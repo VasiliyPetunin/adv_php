@@ -1,0 +1,9 @@
+{% for product in products %}
+    <div class="product" id="{{ product.id }}" style="display: flex; flex-flow: column nowrap; margin-bottom: 20px; border: 1px solid black;">
+        <img src="images/{{ product.photo }}" alt="{{ product.photo }}" style="width: 150px; height: 150px;">
+        <p>{{ product.product_name }}.</p>
+        <p>Cost of the product: {{ product.product_cost }} rubles.</p>
+        <p>In stock: {{ product.product_count }}</p>
+        <a href="#"><button style="background-color: red; color: white;">Add to cart(Not available now)</button></a>
+    </div>
+{% endfor %}
