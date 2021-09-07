@@ -1,0 +1,17 @@
+{% include 'header.html' %}
+<div id="catalog-data">
+    <ul>
+        {% for subcategory in content_data.subcategories %}
+        <li><a href="/index.php?page=categories&id={{ subcategory.id_category }}">{{ subcategory.name }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div id="goods-data">
+    <ul>
+        {% for good in content_data.goods %}
+        <li><a href="/categories/goods/{{ good.id_good }}/">{{ good.name }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% include 'footer.html' %}
