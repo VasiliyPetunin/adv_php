@@ -1,0 +1,37 @@
+{% include 'header.html' %}
+<section style="width: 1100px; display: flex; flex-flow: row wrap; justify-content: space-between;">
+    <!-- {{content_data}} -->
+    {% if content_data|is_array %}
+        <form action="server.php" method="POST">
+            {% for good of content_data %}
+                <div>
+                    <p style="text-transform: uppercase;">Item name: {{ good.name }}</p>
+                    <p style="text-transform: uppercase;">Item price: {{ good.price }}</p>
+                    <p style="text-transform: uppercase;">Count: {{ good.count }}</p>
+                    <a href="index.php?path=Basket/increaseProductCount/{{ good.id }}" style="color: red; padding: 5px 10px 5px 10px;">+</a>
+                    <a href="index.php?path=Basket/decreaseProductCount/{{ good.id }}" style="color: red; padding: 5px 10px 5px 10px;">-</a>
+                    <a href="index.php?path=Basket/deleteProduct/{{ good.id }}" style="color: blue; padding: 5px 10px 5px 10px;">Delete from cart</a>
+                    <input type="hidden" name="productsId[]" value = "{{ good.id }}">
+                </div>
+            {% endfor; %}
+            <p name="totalCost" style="text-transform: uppercase; padding: 5px 10px 5px 10px;">Total cost: {{ totalCostBasket }}</p>
+            <a href="index.php?path=Basket/deleteAll/{{ good.id }}" style="text-transform: uppercase; color: red;">Clear the cart</a>
+            <input type="hidden" name="id" value = "{{ userId }}">
+            <input type="submit" value="Make an order" style="border: 1px solid red; color: black;">
+        </form>
+    {% endif; %}
+
+    {% if content_data|is_string %}
+            <h1>{{ content_data }}</h1>
+            <a href="index.php?path=Catalog/catalog" style="color: red">Get back to the catalog</a>
+    {% endif; %}
+
+    <!-- {% for good of content_data %}
+        <div style="border: 3px solid black;">
+            <p style="text-transform: uppercase;">Item name: {{ good.name }}</p>
+            <p style="text-transform: uppercase;">Item price: {{ good.price }}</p>
+            <a href="index.php&path=Basket/addItem/{{ good.id }}" style="color: red">Add to cart</a>
+        </div>
+    {% endfor; %} -->
+</section>
+{% include 'footer.html' %}
